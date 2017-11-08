@@ -47,28 +47,33 @@
   # Make a data table for plotting using data.table transformations
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
+  print(1)
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),
-                          list("total_offence_count" = sum(crime_data$offence_count)),by = list(month(date), suburb)]
+                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
   #filter the unique tuples
+  print(2)
   plot_data <- unique(plot_data)
+  print(3)
   # These lines will transform the plot_data structure to allow us to plot
   # correlations. Try them out
   plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
-
+ print(4)
   plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
                      fill = 0, value.var = "total_offence_count")
+  print(5)
   suburb1 = rbind(plot_data$month,plot_data$x,suburbs[1])
   suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
-
+print(6)
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
   plot_data$month = factor(plot_data$month ,level = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))
   plot_data$total_offence_count = as.numeric(plot_data$total_offence_count)
+  print(7)
   # Generate the plot
 
   ggplot(plot_data, aes(x = month, y = total_offence_count, color = factor(suburb)))+
        geom_count() +
-    labs(x = "Month",
+    labs(title = "Offence count summary",
+      x = "Month",
          y = "Total offence count in the two suburbs");
 }
-
