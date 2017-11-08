@@ -57,8 +57,8 @@
 
   plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
                      fill = 0, value.var = "total_offence_count")
-  suburb1 = rbind(plot_data$month,plot_data$x,suburbs[1])
-  suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
+  suburb1 = rbind(plot_data$month,plot_data$x,"x")
+  suburb2 = rbind(plot_data$month,plot_data$y,"y")
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
 
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
