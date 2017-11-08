@@ -19,7 +19,7 @@
 #' offence_description = "OFFENCES AGAINST PROPERTY"
 #' suburbs = c("ABERFOYLE PARK", "ADELAIDE")
 #' CrimePlot(crime_data, offence_description, suburbs)
- CrimePlot <- function(crime_data, offence_description, suburbs) {
+ CrimePlot1 <- function(crime_data, offence_description, suburbs) {
   require(data.table)
   require(ggplot2)
 
@@ -48,9 +48,8 @@
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
   offence_count = crime_data$offence_count
-  #(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description)
-  plot_data <- crime_data[,
-                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+  plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),
+                          list("total_offence_count" = sum(offence_count), suburb),by = list(month(date))]
   #filter the unique tuples
   print(1)
   plot_data <- unique(plot_data)
