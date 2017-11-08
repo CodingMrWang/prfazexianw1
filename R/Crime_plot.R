@@ -19,7 +19,7 @@
 #' offence_description = "OFFENCES AGAINST PROPERTY"
 #' suburbs = c("ABERFOYLE PARK", "ADELAIDE")
 #' CrimePlot(crime_data, offence_description, suburbs)
- CrimePlot1 <- function(crime_data, offence_description, suburbs) {
+ CrimePlot <- function(crime_data, offence_description, suburbs) {
   require(data.table)
   require(ggplot2)
 
