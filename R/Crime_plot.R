@@ -24,12 +24,12 @@
   require(ggplot2)
 
   # Error catching
-
+  print(9999)
   if (length(suburbs) != 2) {
     stop("Please enter two suburbs")
   }
 
-
+  print(8888888)
   expected_colnames <- c("date", "suburb", "postcode", "offence_level_1", "offence_level_2",
                          "offence_level_3", "offence_count")
 

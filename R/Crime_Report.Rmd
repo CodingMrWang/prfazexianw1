@@ -28,7 +28,8 @@ for (i in seq_along(crime_files)) {
   crime[[i]] <- setDT(read_excel(file.path("data", f)))
   setnames(crime[[i]], c("date", "suburb", "postcode", "offence_level_1",
                     "offence_level_2", "offence_level_3", "offence_count"))
-  graphs[i] = CrimePlot(crime[i], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+  data = crime[[1]]
+  graphs[i] = CrimePlot(data, "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 }
 
 ```
