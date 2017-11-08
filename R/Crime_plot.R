@@ -49,7 +49,7 @@
   # Expect cols: "date", "suburb", "total_offence_count"
   offence_count = crime_data$offence_count
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),
-                          list("total_offence_count" = sum(offence_count), suburb),by = list(month(date))]
+                          list("total_offence_count" = sum(offence_count), crime_data$suburb),by = list(month(date))]
   #filter the unique tuples
   print(1)
   plot_data <- unique(plot_data)
