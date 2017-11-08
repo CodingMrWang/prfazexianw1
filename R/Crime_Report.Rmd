@@ -40,7 +40,7 @@ for (i in seq_along(crime_files)) {
 
 ```{r}
 require(cowplot)
-a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", as.vector(c("ABERFOYLE PARK", "ADELAIDE")))
+a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 b = CrimePlot1(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 c = CrimePlot1(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 d = CrimePlot1(crime[[4]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))

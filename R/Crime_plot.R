@@ -50,11 +50,15 @@
   offence_count = crime_data$offence_count
   suburb = crime_data$suburb
   crime_data$date = month(crime_data$date)
+  print(1)
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),list("suburb" = crime_data$suburb, "total_offence_count" = sum(offence_count)), by = date]
+  print(2)
   plot_data <- unique(plot_data)
+  print(3)
   # These lines will transform the plot_data structure to allow us to plot
   # correlations. Try them out
   plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
+  print(4)
   plot_data <- dcast(plot_data, date ~ suburb, fun = sum,
                      fill = 0, value.var = "total_offence_count")
   suburb1 = rbind(plot_data$date,plot_data$x,suburbs[1])
