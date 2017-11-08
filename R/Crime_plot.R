@@ -32,22 +32,23 @@
   print(8888888)
   expected_colnames <- c("date", "suburb", "postcode", "offence_level_1", "offence_level_2",
                          "offence_level_3", "offence_count")
-
+  print(0000000)
   if (!all.equal(colnames(crime_data), expected_colnames)) {
     stop(paste("Input table columns need to match: ",
                paste(expected_colnames, collapse = ", ")))
   }
-
+  print(1111111111)
   # Check that the input suburbs and offence description exist in crime_data
   if (any(!suburbs %in% crime_data$suburb) |
       !offence_description %in% crime_data$offence_level_3) {
     stop("input suburbs or offence descriptoin doesn't exist in crime_data")
   }
-
+ print(5555555555)
   # Make a data table for plotting using data.table transformations
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
   offence_count = crime_data$offence_count
+  print(2343454)
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),
                           list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
   #filter the unique tuples
