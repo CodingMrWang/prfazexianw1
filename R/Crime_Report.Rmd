@@ -32,7 +32,7 @@ for (i in seq_along(crime_files)) {
 ```
 ```{r}
 data = crime[[1]]
-CrimePlot(data, "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+CrimePlot1(data, "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
