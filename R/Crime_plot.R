@@ -37,7 +37,7 @@
     stop(paste("Input table columns need to match: ",
                paste(expected_colnames, collapse = ", ")))
   }
-
+  offence_level_3 = crime_data$offence_level_3
   # Check that the input suburbs and offence description exist in crime_data
   if (any(!suburbs %in% crime_data$suburb) |
       !offence_description %in% crime_data$offence_level_3) {
