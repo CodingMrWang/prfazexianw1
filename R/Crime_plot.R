@@ -53,13 +53,13 @@
   #plot_data <- unique(plot_data)
   # These lines will transform the plot_data structure to allow us to plot
   # correlations. Try them out
-  plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
+  #plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
 
-  plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
-                     fill = 0, value.var = "total_offence_count")
-  suburb1 = rbind(plot_data$month,plot_data$x,"x")
-  suburb2 = rbind(plot_data$month,plot_data$y,"y")
-  plot_data = data.frame(t(cbind(suburb1, suburb2)))
+  #plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
+  #                   fill = 0, value.var = "total_offence_count")
+  #suburb1 = rbind(plot_data$month,plot_data$x,suburbs[1])
+  #suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
+  #plot_data = data.frame(t(cbind(suburb1, suburb2)))
 
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
   plot_data$month = factor(plot_data$month ,level = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))
