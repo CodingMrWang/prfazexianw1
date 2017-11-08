@@ -47,18 +47,18 @@
   # Make a data table for plotting using data.table transformations
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
-  offence_count = crime_data$offence_count
+  #offence_count = crime_data$offence_count
   plot_data <- crime_data[crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description,
-                          .(total_offence_count = sum(offence_count)), by = list(suburb,month(date))]
+                          list(total_offence_count = sum(offence_count)), by = list(suburb, month(date))]
 
-  plot_data <- unique(plot_data)
+  #plot_data <- unique(plot_data)
   # These lines will transform the plot_data structure to allow us to plot
   # correlations. Try them out
   plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
-  plot_data <- dcast(plot_data, date ~ suburb, fun = sum,
+  plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
                      fill = 0, value.var = "total_offence_count")
-  suburb1 = rbind(plot_data$date,plot_data$x,suburbs[1])
-  suburb2 = rbind(plot_data$date,plot_data$y,suburbs[2])
+  suburb1 = rbind(plot_data$month,plot_data$x,suburbs[1])
+  suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
   plot_data$month = factor(plot_data$month ,level = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))
