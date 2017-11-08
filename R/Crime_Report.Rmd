@@ -40,14 +40,14 @@ for (i in seq_along(crime_files)) {
 
 ```{r}
 require(cowplot)
-a = CrimePlot1(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 b = CrimePlot1(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 c = CrimePlot1(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 d = CrimePlot1(crime[[4]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 e = CrimePlot1(crime[[5]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 pgrid <- plot_grid(a,b,c,d,e,ncol=2,labels="auto", label_size=12, align="v")
 pgrid
-
+a
 ```
 From the graph, we can observe that the total offence in Adelaide is always larger than that in ABERFOYLE PARK. Generally, the total offence is increasing from January to December. 
 
