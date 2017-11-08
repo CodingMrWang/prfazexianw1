@@ -51,18 +51,25 @@
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),
                           list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
   #filter the unique tuples
+  print(1)
   plot_data <- unique(plot_data)
+  print(2)
   # These lines will transform the plot_data structure to allow us to plot
   # correlations. Try them out
   plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
   plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
                      fill = 0, value.var = "total_offence_count")
+  print(3)
   suburb1 = rbind(plot_data$month,plot_data$x,suburbs[1])
+  print(4)
   suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
+  print(5)
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
+  print(6)
   plot_data$month = factor(plot_data$month ,level = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))
   plot_data$total_offence_count = as.numeric(plot_data$total_offence_count)
+  print(7)
   # Generate the plot
 
   ggplot(plot_data, aes(x = month, y = total_offence_count, color = factor(suburb)))+
