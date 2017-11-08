@@ -51,7 +51,7 @@
   suburb = crime_data$suburb
   crime_data$date = month(crime_data$date)
   print(1)
-  plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),list("suburb" = crime_data$suburb, "total_offence_count" = sum(offence_count)), by = date]
+  plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),.(suburb = crime_data$suburb, total_offence_count = sum(offence_count)), by = date]
   print(2)
   plot_data <- unique(plot_data)
   print(3)
