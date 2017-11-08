@@ -48,6 +48,7 @@
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
   offence_count = crime_data$offence_count
+  suburb = crime_data$suburb
   crime_data$date = month(crime_data$date)
   plot_data <- crime_data[(crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description),list("suburb" = crime_data$suburb, "total_offence_count" = sum(offence_count)), by = date]
   plot_data <- unique(plot_data)
