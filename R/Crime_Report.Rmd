@@ -7,35 +7,72 @@ output: html_document
 
 
 ```{r}
-devtools::install_github("CodingMrWang/prfazexianw1", force = TRUE)
+devtools::install_github("CodingMrWang/prfazexianw1", Force = TRUE)
 library(prfazexianw1)
 ```
 
 You can also embed plots, for example:
 
 ```{r}
-library(data.table)
-library(ggplot2)
-library(readxl)
+require(data.table)
+require(ggplot2)
+require(readxl)
 filenames <- list.files("data")
 crime_idx <- grep("crime-statistics", filenames)
 crime_files <- filenames[crime_idx]
 number_of_files <- length(crime_files)
 crime <- vector(mode = "list", length = number_of_files)
-graphs = vector(mode = "list", length = number_of_files)
+graphs <- vector(mode = "list", length = number_of_files)
 for (i in seq_along(crime_files)) {
   f <- crime_files[i]
   crime[[i]] <- setDT(read_excel(file.path("data", f)))
+  
   setnames(crime[[i]], c("date", "suburb", "postcode", "offence_level_1",
                     "offence_level_2", "offence_level_3", "offence_count"))
-  data = crime[[1]]
-  graphs[i] = CrimePlot(data, "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+
 }
-
 ```
+
+
+
+
+
+
 ```{r}
-
+require(cowplot)
+a = CrimePlot1(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+b = CrimePlot1(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+c = CrimePlot1(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+d = CrimePlot1(crime[[4]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+e = CrimePlot1(crime[[5]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+pgrid <- plot_grid(a,b,c,d,e,ncol=2,labels="auto", label_size=12, align="v")
+pgrid
 
 ```
+From the graph, we can observe that the total offence in Adelaide is always larger than that in ABERFOYLE PARK. Generally, the total offence is increasing from January to December. 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+```{r}
+knitr::kable
+library("knitr")
+offence_description = "OFFENCES AGAINST PROPERTY"
+suburbs = c("ABERFOYLE PARK", "ADELAIDE")
+d1 <- crime[[1]][(crime[[1]]$suburb %in% suburbs & crime[[1]]$offence_level_3 %in% offence_description),
+                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+d2 <- crime[[2]][(crime[[2]]$suburb %in% suburbs & crime[[2]]$offence_level_3 %in% offence_description),
+                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+d3 <- crime[[3]][(crime[[3]]$suburb %in% suburbs & crime[[3]]$offence_level_3 %in% offence_description),
+                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+d4 <- crime[[4]][(crime[[4]]$suburb %in% suburbs & crime[[4]]$offence_level_3 %in% offence_description),
+                         list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+d5 <- crime[[5]][(crime[[5]]$suburb %in% suburbs & crime[[5]]$offence_level_3 %in% offence_description),
+                          list("total_offence_count" = sum(offence_count)),by = list(month(date), suburb)]
+d = rbind(d1, d2, d3, d4, d5)
+kable(d)
+```
+
+
+
