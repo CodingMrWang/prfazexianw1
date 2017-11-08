@@ -5,7 +5,6 @@ Version: 0.1
 Date: 2017-11-08
 Author: Zexian Wang
 Maintainer: ZEXIAN WANG <zexianw@andrew.cmu.edu>
-                  role = c("aut", "cre"))
 Description: it will accept any of the offence_descriptions found in Offence Level 3 and will accept a 2-element vector of suburbs, then plot the total offence of the specificed description in the two suburbs in each month
 License: What license is it under?
 LazyData: TRUE
