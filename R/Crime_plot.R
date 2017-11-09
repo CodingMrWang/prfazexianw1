@@ -1,7 +1,7 @@
 ## QUESTION ----
 
 #' plot total offence according to specific area and type
-#'
+#' @import data.table
 #' \code{CrimePlot} < it will accept any of the offence_descriptions found in Offence Level 3
 #' and will accept a 2-element vector of suburbs, then plot the total offence of the specificed
 #' description in the two suburbs in each month>
@@ -61,6 +61,7 @@
   suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
+  plot_data$month = factor(plot_data$month ,level = c("7", "8", "9", "10", "11", "12", "1", "2", "3", "4", "5", "6"))
   plot_data$total_offence_count = as.numeric(plot_data$total_offence_count)
   # Generate the plot
 

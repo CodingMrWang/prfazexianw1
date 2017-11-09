@@ -8,6 +8,7 @@ output: html_document
 
 ```{r}
 devtools::install_github("CodingMrWang/prfazexianw1", Force = TRUE)
+devtools::install_github("lipingh/prfalipingh")
 library(prfazexianw1)
 ```
 
