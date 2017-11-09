@@ -18,6 +18,7 @@ You can also embed plots, for example:
 require(data.table)
 require(ggplot2)
 require(readxl)
+require(cowplot)
 filenames <- list.files("data")
 crime_idx <- grep("crime-statistics", filenames)
 crime_files <- filenames[crime_idx]
@@ -40,7 +41,7 @@ for (i in seq_along(crime_files)) {
 
 
 ```{r}
-require(cowplot)
+
 a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 b = CrimePlot(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
 c = CrimePlot(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
