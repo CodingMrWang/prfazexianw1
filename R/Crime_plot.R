@@ -33,10 +33,10 @@ CrimePlot <- function(crime_data, offence_description, suburbs) {
   expected_colnames <- c("date", "suburb", "postcode", "offence_level_1", "offence_level_2",
                          "offence_level_3", "offence_count")
 
-  if (!all.equal(colnames(crime_data), expected_colnames)) {
-    stop(paste("Input table columns need to match: ",
-               paste(expected_colnames, collapse = ", ")))
-  }
+#  if (!all.equal(colnames(crime_data), expected_colnames)) {
+ #   stop(paste("Input table columns need to match: ",
+  #             paste(expected_colnames, collapse = ", ")))
+#  }
   offence_level_3 = crime_data$offence_level_3
   # Check that the input suburbs and offence description exist in crime_data
   if (any(!suburbs %in% crime_data$suburb) |

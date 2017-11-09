@@ -31,7 +31,13 @@ for (i in seq_along(crime_files)) {
                     "offence_level_2", "offence_level_3", "offence_count"))
 
 }
-
+a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+b = CrimePlot(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+c = CrimePlot(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+d = CrimePlot(crime[[4]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+e = CrimePlot(crime[[5]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
+pgrid <- plot_grid(a,b,c,d,e,ncol=2,labels="auto", label_size=12, align="v")
+pgrid
 ```
 
 
@@ -48,6 +54,7 @@ From the graph, we can observe that the total offence in Adelaide is always larg
 ```{r}
 knitr::kable
 library("knitr")
+
 offence_description = "OFFENCES AGAINST PROPERTY"
 suburbs = c("ABERFOYLE PARK", "ADELAIDE")
 d1 <- crime[[1]][(crime[[1]]$suburb %in% suburbs & crime[[1]]$offence_level_3 %in% offence_description),
