@@ -61,7 +61,6 @@
   suburb2 = rbind(plot_data$month,plot_data$y,suburbs[2])
   plot_data = data.frame(t(cbind(suburb1, suburb2)))
   colnames(plot_data) = c("month", "total_offence_count", "suburb")
-  plot_data$month = factor(plot_data$month ,level = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))
   plot_data$total_offence_count = as.numeric(plot_data$total_offence_count)
   # Generate the plot
 
