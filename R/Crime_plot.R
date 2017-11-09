@@ -49,7 +49,7 @@ CrimePlot <- function(crime_data, offence_description, suburbs) {
   # Expect cols: "date", "suburb", "total_offence_count"
   offence_count = crime_data$offence_count
   plot_data <- crime_data[crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description,
-                          list(total_offence_count = sum(offence_count)), by = list(suburb, month(date))]
+                          .(total_offence_count = sum(offence_count)), by = .(suburb, month(date))]
 
   #plot_data <- unique(plot_data)
   # These lines will transform the plot_data structure to allow us to plot

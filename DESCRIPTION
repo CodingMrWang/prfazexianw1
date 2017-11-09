@@ -8,6 +8,6 @@ Depends:data.table
 License: file License
 Encoding: UTF-8
 LazyData: true
-Imports: ggplot2, data.table
+Imports: ggplot2, data.table,knitr, cowplot
 Suggests: readxl
 RoxygenNote: 6.0.1
