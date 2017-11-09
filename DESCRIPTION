@@ -4,6 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person("ZEXIAN", "WANG", email = "zexianw@andrew.cmu.edu", role = c("aut", "cre"))
 Description: it will accept any of the offence_descriptions found in Offence Level 3and will accept a 2-element vector of suburbs, then plot the total offence of the specificed description in the two suburbs in each month
 Depends: R (>= 3.2.1)
+Depends:data.table
 License: file License
 Encoding: UTF-8
 LazyData: true
