@@ -47,7 +47,7 @@ CrimePlot <- function(crime_data, offence_description, suburbs) {
   # Make a data table for plotting using data.table transformations
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
-  offence_count = crime_data$offence_count
+  #offence_count = crime_data$offence_count
   plot_data <- crime_data[suburb %in% suburbs & offence_level_3 == offence_description,
                           .(total_offence_count = sum(offence_count)), by = .(suburb, month(date))]
 
