@@ -5,15 +5,13 @@ date: "11/8/2017"
 output: html_document
 ---
 
-
+install package from github
 ```{r}
 devtools::install_github("CodingMrWang/prfazexianw1", Force = TRUE)
 library(prfazexianw1)
-
 ```
 
-You can also embed plots, for example:
-
+load the data with a foor loop
 ```{r}
 require(data.table)
 require(ggplot2)
@@ -23,35 +21,24 @@ filenames <- list.files("data")
 crime_idx <- grep("crime-statistics", filenames)
 crime_files <- filenames[crime_idx]
 number_of_files <- length(crime_files)
-crime <- vector(mode = "list", length = number_of_files)
-graphs <- vector(mode = "list", length = number_of_files)
+crime <- vector(mode = "list", length = 10)
 for (i in seq_along(crime_files)) {
   f <- crime_files[i]
   crime[[i]] <- setDT(read_excel(file.path("data", f)))
-  
+  CrimePlot(crime[[i]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
   setnames(crime[[i]], c("date", "suburb", "postcode", "offence_level_1",
                     "offence_level_2", "offence_level_3", "offence_count"))
 
 }
+
 ```
 
 
-
-
-
-
+Draw five graphs together to make comparision 
 ```{r}
 
-a = CrimePlot(crime[[1]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
-b = CrimePlot(crime[[2]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
-c = CrimePlot(crime[[3]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
-d = CrimePlot(crime[[4]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
-e = CrimePlot(crime[[5]], "OFFENCES AGAINST PROPERTY", c("ABERFOYLE PARK", "ADELAIDE"))
-pgrid <- plot_grid(a,b,c,d,e,ncol=2,labels="auto", label_size=12, align="v")
-pgrid
-a
 ```
-From the graph, we can observe that the total offence in Adelaide is always larger than that in ABERFOYLE PARK. Generally, the total offence is increasing from January to December. 
+From the graph, we can observe that the total offence in Adelaide is always larger than that in ABERFOYLE PARK. 
 
 
 

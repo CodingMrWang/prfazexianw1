@@ -11,7 +11,7 @@
 #' @param offence_description A character string of one description found in Offence level 3.
 #' @param suburbs A two-element character vector. Each element is the name (UPPERCASE)
 #'     of an SA suburb.
-#' @export
+#' @export ggplot
 #' @return  A ggplot object showing the correlation in offence count between the two input suburbs.
 #' @examples
 #' <one or two examples showing how to use the function>
@@ -19,7 +19,7 @@
 #' offence_description = "OFFENCES AGAINST PROPERTY"
 #' suburbs = c("ABERFOYLE PARK", "ADELAIDE")
 #' CrimePlot(crime_data, offence_description, suburbs)
- CrimePlot <- function(crime_data, offence_description, suburbs) {
+CrimePlot <- function(crime_data, offence_description, suburbs) {
   require(data.table)
   require(ggplot2)
 
@@ -47,7 +47,7 @@
   # Make a data table for plotting using data.table transformations
   # You will need to filter, summarise and group by
   # Expect cols: "date", "suburb", "total_offence_count"
-  #offence_count = crime_data$offence_count
+  offence_count = crime_data$offence_count
   plot_data <- crime_data[crime_data$suburb %in% suburbs & crime_data$offence_level_3 %in% offence_description,
                           list(total_offence_count = sum(offence_count)), by = list(suburb, month(date))]
 
